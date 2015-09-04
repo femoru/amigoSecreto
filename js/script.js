@@ -1,4 +1,16 @@
+var $items;
 $(document).ready(function() {
+	var $personajes = $.getJSON("js/personajes.json",function (data) {
+		$items = data;
+		var $select = $("#personaje").empty();
+		$.each(data,function (obj) {
+			$('<option>',{
+				value:obj,
+				text:data[obj]
+			}).appendTo($select);
+		});
+	});
+
 	var $summernote = $('#summernote');
 	var summerParams = {
 		height:170,
@@ -19,12 +31,14 @@ $(document).ready(function() {
 	};
 
 	var guardar = function(){
+
 		if(!$summernote.summernote('isEmpty')) {
+			var $id = $("#personaje").val()
 			$.ajax({
 				url:'php/action.php',
 				method:'POST',
 				data:{
-					personaje:$("#personaje").val(),
+					personaje: '<img height="70px" src="imag/' + $id + '.jpg" title="'+ $items[$id] +'"/>',
 					comentario:$summernote.code()
 				},
 				success:function(data,textStatus,jqXHR ){
@@ -42,7 +56,12 @@ $(document).ready(function() {
 	$summernote.summernote(summerParams);
 
 	$('#enviar').click(guardar);
-	setInterval(function(){ 
-    	$('#tcomentarios').bootstrapTable('refresh', {silent:true});//code goes here that will be run every 5 seconds.    
+	$("#personaje").on('change',function(){
+		var $id = $("#personaje").val();
+		$("#prev").attr('src','imag/'+$id+'.jpg')
+	});
+	/*setInterval(function(){ 
+    	$('#tcomentarios').bootstrapTable('refresh', {silent:false});//code goes here that will be run every 10 seconds.    
 	}, 10000);
+	*/
 });

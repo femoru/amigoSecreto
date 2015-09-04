@@ -24,8 +24,15 @@
 			width: 100%;
 			text-decoration: none;
 		}
-		#tcomentarios img{
+		.img-comment img{
 			width: 25% !important;
+		}
+		#lbprev{
+			width: 150px;
+			float: left;
+		}
+		#personaje{
+			width: 100%;
 		}
 	</style>
 
@@ -43,10 +50,16 @@
 		    </div>
 		    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 		      <div class="panel-body">
-		        <div class="form-group">
-		    		<select id="personaje" class="form-control">
-		    			<option value="tarzan" >Tarzan</option>
-		    		</select>
+		        <div class="form-group form-inline row">
+		        	<div class="col-sm-2">
+			        	<label id="lbprev" for="personaje">
+		        			<img id="prev" class="center-block" height="70px" src="imag/1.jpg" />
+			        	</label>
+		        	</div>
+		        	<div class="col-sm-10">
+			    		<select id="personaje" class="form-control ">
+			    		</select>
+		    		</div>
 		    	</div>
 		    	<div id="summernote"></div>
 		    	<button id="enviar" class="btn btn-block btn-success">
@@ -73,8 +86,8 @@
 						<thead>
 					    	<tr>
 						        <th data-field="fecha" data-sortable="true" data-visible="false">#</th>
-						        <th data-field="personaje" data-sortable="true">Nombre</th>
-						        <th data-field="comentario" data-sortable="true">Comentario</th>
+						        <th data-field="personaje" data-width="150" data-align="center" data-sortable="true">Nombre</th>
+						        <th data-field="comentario" data-class="img-comment" data-sortable="true">Comentario</th>
 					    	</tr>
 					    </thead>
 					</table>
