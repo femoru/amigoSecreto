@@ -785,7 +785,7 @@
       } else if (list.all(node.childNodes, isText) && node.innerHTML === '') {
         // ex) <p></p>, <span></span>
         return true;
-      }else if (!$(node).text().trim().length) {
+      }else if (!$(node).text().trim().length && !$(node).find('img').length) {
         // ex) <p></p>, <span></span>
         return true;
       }
